@@ -18,8 +18,15 @@ def get_numbers_from_user():
         # TODO: Check if user typed 'done'
         # TODO: Try to convert to float and add to list
         # TODO: Handle invalid input gracefully
-        pass
-
+        raw = input("Enter a number (or 'done'): ").strip().lower()
+        if raw == "done":
+            break
+        try:
+            value = float(raw.replace(",", "."))
+            numbers.append(value)
+        except ValueError:
+            print("Invalid input! Please enter a number or 'done'!")
+            continue
     return numbers
 
 
@@ -52,7 +59,29 @@ def analyze_numbers(numbers):
     # TODO: Find maximum
     # TODO: Count even numbers (hint: use modulo operator)
     # TODO: Count odd numbers
-
+    count = len(numbers)
+    total = sum(numbers)
+    avg = total / count
+    minimum = min(numbers)
+    maximum = max(numbers)
+    even_count = 0
+    odd_count = 0
+    for x in numbers:
+        if float(x).is_integer():
+            xi = int(x)
+            if xi % 2 == 0:
+                even_count += 1
+            else :
+                odd_count += 1
+    analysis = {
+        "count": count,
+        "sum": total,
+        "average": avg,
+        "minimum": minimum,
+        "maximum": maximum,
+        "even_count": even_count,
+        "odd_count": odd_count,
+        }
     return analysis
 
 
@@ -68,6 +97,13 @@ def display_analysis(analysis):
 
     print("\nAnalysis Results:")
     print("-" * 20)
+    print(f"Count      : {analysis['count']}")
+    print(f"Sum        : {analysis['sum']:.2f}")
+    print(f"Average    : {analysis['average']:.2f}")
+    print(f"Minimum    : {analysis['minimum']}")
+    print(f"Maximum    : {analysis['maximum']}")
+    print(f"Even count : {analysis['even_count']} (only integers counted)")
+    print(f"Odd  count : {analysis['odd_count']} (only integers counted)")
 
     # TODO: Display all analysis results in a nice format
     # Example:
@@ -75,7 +111,7 @@ def display_analysis(analysis):
     # Sum: 25
     # Average: 5.00
     # etc.
-    pass
+    
 
 
 def main():

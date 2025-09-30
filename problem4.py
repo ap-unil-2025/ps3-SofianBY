@@ -32,7 +32,10 @@ def count_words(filename):
     """
     # TODO: Open file and count words
     # Hint: Use split() to separate words
-    pass
+    with open(filename, "r") as f:
+        contenu = f.read()
+        mots = contenu.split()
+    return len(mots)
 
 
 def count_lines(filename):
@@ -46,7 +49,11 @@ def count_lines(filename):
         int: Total number of lines
     """
     # TODO: Open file and count lines
-    pass
+    with open(filename, "r") as f:
+        lignes = f.readlines()
+    return len(lignes)
+
+
 
 
 def count_characters(filename, include_spaces=True):
@@ -62,7 +69,13 @@ def count_characters(filename, include_spaces=True):
     """
     # TODO: Open file and count characters
     # If include_spaces is False, don't count spaces
-    pass
+    with open(filename, "r") as f:
+        contenu = f.read()
+        if include_spaces:
+            return len(contenu)
+        else :
+            contenu_without_spaces = contenu.replace(" ","")
+        return len(contenu_without_spaces)
 
 
 def find_longest_word(filename):
@@ -77,7 +90,20 @@ def find_longest_word(filename):
     """
     # TODO: Find the longest word
     # Hint: You might need to remove punctuation
-    pass
+    with open(filename, "r") as f:
+        contenu = f.read()
+    import string 
+    contenu_modified = contenu
+    for p in string.punctuation:
+        contenu_modified = contenu_modified.replace(p,"")
+    liste = contenu_modified.split()
+    longest =""
+    for mot in liste:
+        if len(mot)>len(longest):
+            longest = mot
+    return longest
+
+
 
 
 def word_frequency(filename):
@@ -91,15 +117,25 @@ def word_frequency(filename):
     Returns:
         dict: Dictionary with words as keys and frequencies as values
     """
-    import string
-
-    frequency = {}
 
     # TODO: Open file
     # TODO: Read all words
     # TODO: Convert to lowercase
     # TODO: Remove punctuation (use string.punctuation)
     # TODO: Count frequency of each word
+    with open(filename, "r") as f:
+        contenu = f.read()
+    contenu = contenu.lower()
+    import string
+    for p in string.punctuation:
+        contenu = contenu.replace(p, "")
+    mots = contenu.split()
+    frequency = {}
+    for mot in mots:
+        if mot in frequency:
+            frequency[mot]+= 1
+        else : 
+            frequency[mot]= 1
 
     return frequency
 

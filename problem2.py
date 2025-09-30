@@ -15,7 +15,8 @@ def celsius_to_fahrenheit(celsius):
         float: Temperature in Fahrenheit
     """
     # TODO: Implement this function
-    pass
+def celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
 
 
 def fahrenheit_to_celsius(fahrenheit):
@@ -30,8 +31,9 @@ def fahrenheit_to_celsius(fahrenheit):
         float: Temperature in Celsius
     """
     # TODO: Implement this function
-    pass
-
+    
+def fahrenheit_to_celsius(fahrenheit):
+    return (fahrenheit-32) * 5/9
 
 def temperature_converter():
     """
@@ -51,7 +53,24 @@ def temperature_converter():
     # - Validate input
     # - Perform conversion
     # - Display result rounded to 2 decimal places
-    pass
+def temperature_converter():
+    print("temperature converter")
+    print("-" * 30)
+    try: 
+        temp = float(input("Enter the temperature value : "))
+        unit = input("Enter the unit : C or F").strip().upper()
+
+        if unit == "C":
+            result = celsius_to_fahrenheit(temp)
+            print(f"{temp}°C = {result:.2f}°F")
+        elif unit == "F":
+            result = fahrenheit_to_celsius(temp)
+            print(f"{temp}°F = {result:.2f}°C")
+        else:
+            print("Invalid unit ! please enter C or F")
+    except ValueError:
+        print("invalid input ! Please enter a number")
+ 
 
 
 # Test cases (DO NOT MODIFY)
@@ -72,3 +91,27 @@ if __name__ == "__main__":
 
     # Run interactive converter
     temperature_converter()
+    def celsius_to_fahrenheit(celsius):
+        return (celsius * 9/5) + 32
+
+    def fahrenheit_to_celsius(fahrenhait):
+        return (fahrenheit-32) * 5/9
+
+    def temperature_converter():
+        print("temperature converter")
+        print("-" * 30)
+
+        try:
+            temp = float(input("Enter the temperature value : "))
+            unit = input("Enter the unit : C or F").strip().upper()
+
+            if unit == "C":
+                result = celsius_to_fahrenheit(temp)
+                print(f"{temp}°C = {result:.2f}°F")
+            elif unit == "F":
+                result = fahrenheit_to_celsius(temp)
+                print(f"{temp}°F = {result:.2f}°C")
+            else:
+                print("Invalid unit ! please enter C or F")
+        except ValueError:
+            print("invalid input ! Please enter a number")
